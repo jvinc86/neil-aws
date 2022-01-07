@@ -1,11 +1,3 @@
-provider "aws" { region = "eu-west-3" }
-
-variable prefijo { default = "neil" }
-variable az { default = ["eu-west-3a","eu-west-3b"] }
-variable rango_cidr_privado { default = ["10.0.3.0/24","10.0.4.0/24"] }
-
-
-
 resource "aws_vpc" "mi_red" {
     cidr_block = "10.0.0.0/16"
     tags = { Name = "vpc-${var.prefijo}" }
