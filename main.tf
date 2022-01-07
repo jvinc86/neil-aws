@@ -1,18 +1,31 @@
-resource "aws_vpc" "mi_red" {
-    cidr_block = "10.0.0.0/16"
-    tags = { Name = "vpc-${var.prefijo}" }
+module mis_redes_1 {
+  source = "./modulos/frontend_servers"
+  proyecto = "ux_ui"
+  rango_cidr_vpc = "192.168.0.0/16"
+  rango_cidr_subred = "192.168.95.0/24"
 }
 
-resource "aws_subnet" "subred-privada-1a" {
-    vpc_id = aws_vpc.mi_red.id
-    availability_zone = var.az[0]
-    cidr_block = var.rango_cidr_privado[0]
-    tags = { Name = "subnet-${var.prefijo}-private-1a" }
+module mis_redes_2 {
+  source = "./modulos/frontend_servers"
+  proyecto = "big_data"
+  rango_cidr_vpc = "172.16.0.0/16"
+  rango_cidr_subred = "172.16.30.0/24"
 }
 
-resource "aws_subnet" "subred-privada-1b" {
-    vpc_id = aws_vpc.mi_red.id
-    availability_zone = var.az[1]
-    cidr_block = var.rango_cidr_privado[1]
-    tags = { Name = "subnet-${var.prefijo}-private-1b" }
+module mis_redes_3 {
+  source = "./modulos/frontend_servers"
+  proyecto = "artificial_intelligence"
+  rango_cidr_vpc = "10.50.0.0/16"
+  rango_cidr_subred = "10.50.70.0/24"
 }
+
+module mis_redes_4 {
+  source = "./modulos/frontend_servers"
+  proyecto = "desarrollo"
+  rango_cidr_vpc = "10.60.0.0/16"
+  rango_cidr_subred = "10.60.70.0/24"
+}
+
+
+
+
